@@ -1,0 +1,64 @@
+<body>
+  <div class="container">
+    <h1>Welcome</h1>
+    <div>
+      <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+        <label for="username">Username</label><br />
+        <input
+          type="text"
+          name="username"
+          id="username"
+          formControlName="username"
+        />
+        <span
+          class="help-block"
+          *ngIf="
+            signupForm.get('username').invalid &&
+            signupForm.get('username').touched &&
+            !(
+              (this.signupForm.get('username').value === '' ||
+                this.signupForm.get('username').value === null) &&
+              this.signupForm.get('username').touched
+            )
+          "
+          >User not found</span
+        >
+        <span
+          class="help-block"
+          *ngIf="
+            (this.signupForm.get('username').value === '' ||
+              this.signupForm.get('username').value === null) &&
+            this.signupForm.get('username').touched
+          "
+          >This field can't be empty</span
+        >
+        <br />
+        <label>Password</label><br />
+        <input
+          type="password"
+          name="password"
+          id="password"
+          formControlName="password"
+        /><br />
+        <p
+          class="help-block"
+          *ngIf="
+            signupForm.get('password').invalid &&
+            signupForm.get('password').touched
+          "
+        >
+          This field can't be empty
+        </p>
+        <button type="submit" [disabled]="signupForm.invalid">Log in</button>
+      </form>
+      <!-- <p style="color: green" *ngIf="success">
+        Nice to meet you. Your login was successful
+      </p> -->
+      <p style="color: red" *ngIf="!success && islogined">
+        Invalid username or password
+      </p>
+    </div>
+    <br />
+    <button routerLink="./signup" class="userSignupButton">New User</button>
+  </div>
+</body>

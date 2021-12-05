@@ -1,0 +1,73 @@
+<body style="background-color: #f4f5f7; padding: 5%">
+  <div class="container">
+    <div>
+      <h3>New User Registration</h3>
+      <form [formGroup]="addUserForm" (ngSubmit)="onSubmit()">
+        <label for="name">Name:</label>
+        <input type="text" name="name" id="name" formControlName="name" />
+        <span
+          class="help-block"
+          *ngIf="
+            addUserForm.get('name').touched &&
+            addUserForm.get('name').value === ''
+          "
+          >This field can't be empty</span
+        ><br />
+        <label for="mobileNumber">Mobile Number:</label>
+        <input
+          type="number"
+          name="mobileNumber"
+          id="mobileNumber"
+          formControlName="mobileNumber"
+        />
+        <span
+          class="help-block"
+          *ngIf="
+            addUserForm.get('mobileNumber').invalid &&
+            addUserForm.get('mobileNumber').touched
+          "
+          >Enter a Valid Mobile Number</span
+        ><br />
+        <label for="email">Email:</label>
+        <input type="email" name="email" id="email" formControlName="email" />
+        <span
+          class="help-block"
+          *ngIf="
+            addUserForm.get('email').invalid && addUserForm.get('email').touched
+          "
+          >Enter a Valid Email Address</span
+        ><br />
+        <label for="newPassword">New Password:</label>
+        <input
+          type="password"
+          name="newPassword"
+          id="newPassword"
+          formControlName="newPassword"
+        /><span
+          class="help-block"
+          *ngIf="
+            addUserForm.get('newPassword').touched &&
+            addUserForm.get('newPassword').value === ''
+          "
+          >This field can't be empty</span
+        ><br />
+        <label for="confirmPassword">Confirm Password</label>
+        <input
+          type="password"
+          name="confirmPassword"
+          id="confirmPassword"
+          formControlName="confirmPassword"
+        /><span
+          class="help-block"
+          *ngIf="
+            addUserForm.get('confirmPassword').invalid &&
+            addUserForm.get('confirmPassword').touched
+          "
+          >Password Doesn't Match</span
+        ><br />
+        <button type="submit" [disabled]="!addUserForm.valid">Submit</button>
+        <button type="reset">Reset</button>
+      </form>
+    </div>
+  </div>
+</body>
